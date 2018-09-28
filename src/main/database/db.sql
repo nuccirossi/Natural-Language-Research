@@ -1,0 +1,1 @@
+-- Here we need to insert all SQL files to generate the entire structure of the database and to populate it
