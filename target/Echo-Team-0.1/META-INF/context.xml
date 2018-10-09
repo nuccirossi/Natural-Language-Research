@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+
+   <Resource name="jdbc/ECHO"
+          auth="Container"
+          type="javax.sql.DataSource"
+          factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+          driverClassName="org.postgresql.Driver"
+          url="jdbc:postgresql://localhost:5432/webapp"
+          username="webdb"
+          password="webdb"
+          testOnBorrow="true"
+          validationQuery="SELECT 1"
+          timeBetweenEvictionRunsMillis="30000"
+          maxActive="2"
+          minIdle="1"
+          maxWait="10000"
+          initialSize="1"
+          removeAbandonedTimeout="60"
+          removeAbandoned="true"
+	/>
+
+</Context>
+
+
