@@ -2,7 +2,7 @@
 
 This repository contains the work for the Principles Of Software Engineering project.
 
-1. MAVEN
+1. ##MAVEN
 The entire project is managed with Maven. [link to Maven](http://maven.apache.org) 
 When you have a working installation cd into the root directory of your project and use: 
 
@@ -12,7 +12,7 @@ This command tells maven to complete the "clean" phase and the "package" which m
 
 **WHEN YOU CHANGE SOMETHING, ALWAYS CHECK IF THE ENTIRE PROJECT COMPILES (WITH THE ABOVE COMMAND), AND THEN UPLOAD IT ON GITHUB**
 
-2. STRUCTURE - MVC PATTERN
+2. ##STRUCTURE - MVC PATTERN
 
 * The main/**database** folder contains all the SQL code to generate the database (e.g. CREATE DATABASE, CREATE TABLE) and to insert data into it (e.g. INSERT INTO TABLE...).
 We are going to discuss together the database design to understand how we are going to implement the real database behind our webapp. 

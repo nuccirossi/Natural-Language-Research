@@ -8,7 +8,7 @@
 	<description>Echo team project</description>
 
 	<welcome-file-list>
-    	<welcome-file>/jsp/HomePage.jsp</welcome-file>
+    	<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
 	<!-- <filter>
