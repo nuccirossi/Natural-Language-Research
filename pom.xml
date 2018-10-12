@@ -128,9 +128,15 @@
 
 
         	<plugin>
-		        <groupId>com.heroku.sdk</groupId>
-		        <artifactId>heroku-maven-plugin</artifactId>
-		        <version>2.0.6</version>
+				<groupId>com.heroku.sdk</groupId>
+			    <artifactId>heroku-maven-plugin</artifactId>
+			    <version>2.0.6</version>
+			    <configuration>
+			        <appName>${heroku.appName}</appName>
+			        <processTypes>
+			          <web>java $JAVA_OPTS -jar target/dependency/webapp-runner.jar $WEBAPP_RUNNER_OPTS --port $PORT target/Echo-Team-0.1.war</web>
+			        </processTypes>
+			    </configuration>
 		    </plugin>
 
 
@@ -139,13 +145,6 @@
 
 
 
-
-		<configuration>
-		  <appName>MethTranslator</appName>
-		  <processTypes>
-		     <web>java $JAVA_OPTS -jar target/dependency/webapp-runner.jar ${WEBAPP_RUNNER_OPTS} --port 4223 ./target/Echo-Team-0.1.war</web>
-		  </processTypes>
-		</configuration>
 
 		<!--  process resources before compilation and packaging -->
 		<resources>
