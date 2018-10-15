@@ -13,56 +13,66 @@ import javax.sql.DataSource;
 public abstract class AbstractDatabaseServlet extends HttpServlet
 {
 
+// public void init(ServletConfig config) throws ServletException
+// {
+
+// 		// the JNDI lookup context
+// 		InitialContext cxt;
+
+// 		try
+// 		{
+// 				cxt = new InitialContext();
+// 				ds = (DataSource) cxt.lookup("java:/comp/env/jdbc/ECHO");
+
+// 		} catch (NamingException e) {
+// 				ds = null;
+
+// 				throw new ServletException(
+// 							  String.format("Impossible to access the connection pool to the database: %s", e.getMessage()));
+// 		}
+// }
+
+// /**
+//  * Releases the {@code DataSource} for managing the connection pool to the database.
+//  */
+// public void destroy()
+// {
+// 		ds = null;
+// }
+
+// /**
+//  * Returns the {@code DataSource} for managing the connection pool to the database.
+//  *
+//  * @return the {@code DataSource} for managing the connection pool to the database
+//  */
+// protected final DataSource getDataSource()
+// {
+// 		return ds;
+// }
+
+// }
+
+
 /**
  * The connection pool to the database.
  */
-private DataSource ds;
+//private DataSource ds;
 
 /**
- * Gets the {@code DataSource} for managing the connection pool to the database.
+ * Gets the {@code Connection} for managing the connection pool to the database.
  *
- * @param config
- *          a {@code ServletConfig} object containing the servlet's
- *          configuration and initialization parameters.
- *
- * @throws ServletException
+ * 
+ * @throws URISyntaxException
+ *          if an exception has occurred that interferes with the servlet's normal operation
+ * @throws SQLException
  *          if an exception has occurred that interferes with the servlet's normal operation
  */
-public void init(ServletConfig config) throws ServletException
-{
+public static Connection getConnection() throws URISyntaxException, SQLException {
+    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-		// the JNDI lookup context
-		InitialContext cxt;
+    String username = dbUri.getUserInfo().split(":")[0];
+    String password = dbUri.getUserInfo().split(":")[1];
+    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
-		try
-		{
-				cxt = new InitialContext();
-				ds = (DataSource) cxt.lookup("java:/comp/env/jdbc/ECHO");
-
-		} catch (NamingException e) {
-				ds = null;
-
-				throw new ServletException(
-							  String.format("Impossible to access the connection pool to the database: %s", e.getMessage()));
-		}
-}
-
-/**
- * Releases the {@code DataSource} for managing the connection pool to the database.
- */
-public void destroy()
-{
-		ds = null;
-}
-
-/**
- * Returns the {@code DataSource} for managing the connection pool to the database.
- *
- * @return the {@code DataSource} for managing the connection pool to the database
- */
-protected final DataSource getDataSource()
-{
-		return ds;
-}
-
+    return DriverManager.getConnection(dbUrl, username, password);
 }
