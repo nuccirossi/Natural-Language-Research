@@ -1,0 +1,1 @@
+SELECT * FROM SENTENCES WHERE internal_id LIKE 'VUA%' ORDER BY random() LIMIT 10;
