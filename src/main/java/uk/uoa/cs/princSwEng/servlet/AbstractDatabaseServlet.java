@@ -6,6 +6,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.sql.DataSource;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.Connection;
 
 /**
  * Gets the {@code DataSource} for managing the connection pool to the database.
@@ -75,4 +80,5 @@ public static Connection getConnection() throws URISyntaxException, SQLException
     String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     return DriverManager.getConnection(dbUrl, username, password);
+}
 }

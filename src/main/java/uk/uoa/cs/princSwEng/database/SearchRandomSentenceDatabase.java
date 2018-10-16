@@ -4,18 +4,23 @@ import uk.uoa.cs.princSwEng.resource.Sentence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 
-public final class Search10RandomSentenceDatabase
+public class SearchRandomSentenceDatabase
 {
 private static final String STATEMENT = "SELECT id FROM SENTENCES WHERE internal_id LIKE ? ORDER BY random() LIMIT ?;";
 private final Connection con;
 private final int number;
+private final String internal_id;
 
-public Search10RandomSentenceDatabase(final Connection con, int i)
+public SearchRandomSentenceDatabase(final Connection con, String internal_id, int i)
 {
 		this.con = con;
 		this.number = i;
+		this.internal_id = internal_id;
 }
 
 /**
@@ -24,7 +29,7 @@ public Search10RandomSentenceDatabase(final Connection con, int i)
  * @throws SQLException
  *             if any error occurs while storing the Category.
  */
-public List<Sentence> search10RandomSentece() throws SQLException
+public List<Sentence> searchRandomSentece() throws SQLException
 {
 		PreparedStatement pstmt = null;
 
@@ -35,7 +40,7 @@ public List<Sentence> search10RandomSentece() throws SQLException
 		try
 		{
 				pstmt = con.prepareStatement(STATEMENT);
-				pstmt.setString(1, sentence.getSentenceInternalId());
+				pstmt.setString(1, internal_id);
 				pstmt.setInt(2, number);
 				rs = pstmt.executeQuery();
 

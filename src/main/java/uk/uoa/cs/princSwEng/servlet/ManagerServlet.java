@@ -1,6 +1,7 @@
 package uk.uoa.cs.princSwEng.servlet;
 
 
+import uk.uoa.cs.princSwEng.resource.Message;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,7 +40,7 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws Servle
 
 		
 		// forwards the control to the ManagerPage
-		req.getRequestDispatcher("manager.html").forward(req, res);
+		req.getRequestDispatcher("/manager.html").forward(req, res);
 
 }
 
@@ -54,15 +55,15 @@ public void doPost(HttpServletRequest req, HttpServletResponse res) throws Servl
 		String corpora;
 
 		// model
-		Company c = null;
+		
 		Message m = null;
 
-		try
-		{
+	//	try
+	//	{
 
 				translator = req.getParameter("translator");
 				languages = req.getParameter("languages");
-				number = req.getParameter("number");
+				number = Integer.parseInt(req.getParameter("number"));
 				corpora = req.getParameter("corpora");
 
 				System.out.println("Parameters retrieved: " + translator + languages + number + corpora);
@@ -75,15 +76,15 @@ public void doPost(HttpServletRequest req, HttpServletResponse res) throws Servl
 				// else
 				// 	m = new Message("Company doesn't find.");
 
-		}/* catch (NumberFormatException ex)
-		          {
-		          m = new Message("Cannot read the company. Invalid input parameters: translator must be a string.",
-		          "E100", ex.getMessage());
-		          }*/catch (SQLException ex)
-		{
-				m = new Message("Cannot find the company: unexpected error while accessing the database.",
-				                "E200", ex.getMessage());
-		}
+	//	}/* catch (NumberFormatException ex)
+	//	          {
+	//	          m = new Message("Cannot read the company. Invalid input parameters: translator must be a string.",
+	//	          "E100", ex.getMessage());
+	//	          }*/catch (SQLException ex)
+	//	{
+	//			m = new Message("Cannot find the company: unexpected error while accessing the database.",
+	//			                "E200", ex.getMessage());
+	//	}
 
 		// stores the deleted company and the message as a request attribute
 		// req.setAttribute("company", c);

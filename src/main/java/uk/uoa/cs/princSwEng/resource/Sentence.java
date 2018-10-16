@@ -26,11 +26,11 @@ public Sentence(final int id, String internal_id, String text)
  * 
  */
 
-public Sentence(final int id, String internal_id, String text)
+public Sentence(final int id)
 {
 		this.id = id;
-		this.internal_id = internal_id;
-		this.text = text;
+		this.internal_id = null;
+		this.text = null;
 }
 
 /**
@@ -70,8 +70,8 @@ public final String getSentenceText()
 }
 
 // @Override
-// public final void toJSON(final OutputStream out) throws IOException
-// {
+ public final void toJSON(final OutputStream out) throws IOException
+{
 // 		final JsonGenerator jg = JSON_FACTORY.createGenerator(out);
 
 // 		jg.writeStartObject();
@@ -81,7 +81,7 @@ public final String getSentenceText()
 // 		jg.writeEndObject();
 // 		jg.writeEndObject();
 // 		jg.flush();
-// }
+}
 
 /**
  * Creates a {@code category} from its JSON representation.
