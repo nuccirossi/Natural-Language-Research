@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 
 public final class ManagerServlet extends AbstractDatabaseServlet
 {
+private static final long serialVersionUID = 1L;
 
 /**
  * List all category.
@@ -40,7 +41,7 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws Servle
 
 		
 		// forwards the control to the ManagerPage
-		req.getRequestDispatcher("/manager.html").forward(req, res);
+		req.getRequestDispatcher("/html/manager.html").forward(req, res);
 
 }
 

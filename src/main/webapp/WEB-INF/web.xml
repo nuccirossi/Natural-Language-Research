@@ -24,7 +24,7 @@
 
 	<servlet>
 		<servlet-name>ManagerServlet</servlet-name>
-		<servlet-class>package uk.uoa.cs.princSwEng.servlet.ManagerServlet</servlet-class>
+		<servlet-class>uk.uoa.cs.princSwEng.servlet.ManagerServlet</servlet-class>
 	</servlet>
 
 	
