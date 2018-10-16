@@ -8,14 +8,14 @@ import java.sql.SQLException;
 
 public final class Search10RandomSentenceDatabase
 {
-private static final String STATEMENT = "SELECT id FROM SENTENCES WHERE internal_id LIKE ? ORDER BY random() LIMIT 10;";
+private static final String STATEMENT = "SELECT id FROM SENTENCES WHERE internal_id LIKE ? ORDER BY random() LIMIT ?;";
 private final Connection con;
-private final Sentence sentence;
+private final int number;
 
-public Search10RandomSentenceDatabase(final Connection con, final Sentence sentence)
+public Search10RandomSentenceDatabase(final Connection con, int i)
 {
 		this.con = con;
-		this.sentence = sentence;
+		this.number = i;
 }
 
 /**
@@ -24,24 +24,38 @@ public Search10RandomSentenceDatabase(final Connection con, final Sentence sente
  * @throws SQLException
  *             if any error occurs while storing the Category.
  */
-public void search10RandomSentece() throws SQLException
+public List<Sentence> search10RandomSentece() throws SQLException
 {
 		PreparedStatement pstmt = null;
+
+		ResultSet rs = null;
+
+		final List<Sentence> sentence = new ArrayList<Sentence>();
 
 		try
 		{
 				pstmt = con.prepareStatement(STATEMENT);
 				pstmt.setString(1, sentence.getSentenceInternalId());
-				pstmt.execute();
+				pstmt.setInt(2, number);
+				rs = pstmt.executeQuery();
+
+				while (rs.next())
+				{
+					sentence.add(new Sentence(rs.getInt("id")));
+				}
 		}
 		finally
 		{
-				if (pstmt != null)
-				{
-						pstmt.close();
-				}
+			if (rs != null)
+					rs.close();
 
-				con.close();
+			if (pstmt != null)
+			{
+					pstmt.close();
+			}
+
+			con.close();
 		}
+		return sentence;
 }
 }

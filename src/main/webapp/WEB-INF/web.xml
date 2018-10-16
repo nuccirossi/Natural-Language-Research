@@ -23,17 +23,25 @@
 
 
 	<servlet>
-		<servlet-name>HomepageServlet</servlet-name>
+		<servlet-name>ManagerServlet</servlet-name>
 		<servlet-class>package uk.uoa.cs.princSwEng.servlet.HomepageServlet;</servlet-class>
 	</servlet>
 
 	
 	
+
+
+	<servlet-mapping>
+		<servlet-name>ManagerServlet</servlet-name>
+		<url-pattern>/manager</url-pattern>
+	</servlet-mapping>
+
 <!-- 
 	<servlet-mapping>
 		<servlet-name>UpdatePasswordServlet</servlet-name>
 		<url-pattern>/update-password</url-pattern>
 	</servlet-mapping> -->
+
 
     
 	

@@ -19,6 +19,20 @@ public Sentence(final int id, String internal_id, String text)
 		this.text = text;
 }
 
+
+/**
+ * Overloaded constructor for internal use
+ *
+ * 
+ */
+
+public Sentence(final int id, String internal_id, String text)
+{
+		this.id = id;
+		this.internal_id = internal_id;
+		this.text = text;
+}
+
 /**
  * Returns the id of the Sentence.
  *
