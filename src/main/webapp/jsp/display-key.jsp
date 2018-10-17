@@ -1,30 +1,21 @@
+<%@ page contentType="text/html;charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE HTML>
-<!--
-	Aesthetic by gettemplates.co
-	Twitter: http://twitter.com/gettemplateco
-	URL: http://gettemplates.co
--->
+
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Motion &mdash; Free Website Template, Free HTML5 Template by gettemplates.co</title>
+	<title>Metatranslate</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by gettemplates.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="gettemplates.co" />
 
   	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
+	
 	<!-- <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400|Montserrat:400,700" rel="stylesheet"> -->
 
 	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
@@ -60,35 +51,19 @@
 				
 				<div class="row">
 					<div class="col-sm-2 col-xs-2">
-						<div id="gtco-logo"><a href="index.html">MethTranslator<sup>&trade;</sup></div>
+						<div id="gtco-logo"><a href="index.html">MetaTranslator<sup>&trade;</sup></div>
 					</div>
-					<div class="col-xs-10 text-right fh5co-top-social">
-						<ul class="gtco-social">
-							<li><a href="#" class="icon-twitter"></i></a></li>
-							<li><a href="#" class="icon-dribbble"></i></a></li>
-							<li><a href="#" class="icon-instagram"></i></a></li>
-							<li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
-						</ul>
-					</div>
+
 				</div>
 				
 			</div>
 		</nav>
-		
-		<div id="gtco-intro">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1 text-center">
-						<div class="dt js-height">
-							<div class="dtc animate-box">
-								<h3 class="gradient-text">Welcome to our metaphor translation survey. You will evaluate the translation quality of 10 given sentences. It takes about 5 minutes. You have to full fill all the questions for each sentence, then move on the next one. The survey is anonymous. Your answers will be recorded for academic research. It may be published on academic articles for research purpose.</h3>
-								<p><a href="/survey.html" class="btn btn-gradient">Start</a></p>
-							</div>	
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
+
+
+	<body>
+		<h1><c:out value="${key}"/></h1>
+	</body>
 
 		<!-- <div id="gtco-project">
 			<div class="container">

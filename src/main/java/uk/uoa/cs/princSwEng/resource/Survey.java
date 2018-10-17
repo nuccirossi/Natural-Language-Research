@@ -11,15 +11,16 @@ private final String corpora;
 private final String translator;
 private final String languages;
 private final int num; 
-private final String[] sent;
+private final int[] sent;
 
 
 
-public Survey(final int corpora, String translator, String languages, String[] sent)
+public Survey(final String corpora,final String translator,final String languages,final int num, final int[] sent)
 {
 		this.corpora = corpora;
 		this.translator = translator;
 		this.languages = languages;
+		this.num = num;
 		this.sent = sent;
 }
 
@@ -31,7 +32,7 @@ public Survey(final int corpora, String translator, String languages, String[] s
  * @return the corpora of the Survey.
  */
 
-public final int getSurveycorpora()
+public final String getSurveyCorpora()
 {
 	return corpora;
 }
@@ -56,12 +57,17 @@ public final String getSurveyTranslator()
  * @return the languages of the Survey.
  */
 
-public final String getSurveylanguages()
+public final String getSurveyLanguages()
 {
 		return languages;
 }
 
-public final String[] getSurveysentence()
+public final int getSurveyNum()
+{
+	return num;
+}
+
+public final int[] getSurveyId()
 {
 	return sent;
 }

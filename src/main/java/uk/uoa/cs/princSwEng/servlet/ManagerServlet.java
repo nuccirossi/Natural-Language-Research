@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 import uk.uoa.cs.princSwEng.resource.Sentence;
+import uk.uoa.cs.princSwEng.resource.Survey;
 import uk.uoa.cs.princSwEng.database.SearchRandomSentenceDatabase;
+import uk.uoa.cs.princSwEng.database.CreateSurveyDatabase;
 
 public final class ManagerServlet extends AbstractDatabaseServlet
 {
@@ -62,6 +64,9 @@ public void doPost(HttpServletRequest req, HttpServletResponse res) throws Servl
 		int number;
 		String corpora;
 		List<Sentence> sentences; 
+		int[] arr;
+		int key = -1;
+
 
 		// model
 		
@@ -72,8 +77,10 @@ public void doPost(HttpServletRequest req, HttpServletResponse res) throws Servl
 
 				translator = req.getParameter("translator");
 				languages = req.getParameter("languages");
-				number = Integer.parseInt(req.getParameter("number"));
+				number = (int)Integer.parseInt((req.getParameter("number")));
 				corpora = req.getParameter("corpora");
+
+				arr = new int[number];
 
 				System.out.println("Parameters retrieved: " + translator + languages + number + corpora);
 
@@ -93,15 +100,13 @@ public void doPost(HttpServletRequest req, HttpServletResponse res) throws Servl
 						return;
 
 				}
+				for (int i=0; i<sentences.size(); i++)
+					arr[i] = (int)sentences.get(i).getSentenceId();
+
+				Survey sur = new Survey(corpora, translator, languages, number, arr);
 
 
-				// c = new ReadCompanyDatabase(getDataSource().getConnection(), translator).readCompany();
-				
-				
-				// if(c!= null)
-				// 	m = new Message("Company successfully read.");
-				// else
-				// 	m = new Message("Company doesn't find.");
+				key = new CreateSurveyDatabase(getConnection(), sur).createSurvey();
 
 		}/* catch (NumberFormatException ex)
 		          {
@@ -119,11 +124,11 @@ public void doPost(HttpServletRequest req, HttpServletResponse res) throws Servl
 		}
 
 		// stores the deleted company and the message as a request attribute
-		// req.setAttribute("company", c);
+		 req.setAttribute("key", key);
 		// req.setAttribute("message", m);
 
 		// forwards the control to the read-company-result JSP
-		//req.getRequestDispatcher("/jsp/read-company-result.jsp").forward(req, res);
+		req.getRequestDispatcher("/jsp/display-key.jsp").forward(req, res);
 
 }
 
