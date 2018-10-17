@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.net.URISyntaxException;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -16,6 +17,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import uk.uoa.cs.princSwEng.resource.Sentence;
+import uk.uoa.cs.princSwEng.database.SearchRandomSentenceDatabase;
 
 public final class ManagerServlet extends AbstractDatabaseServlet
 {
@@ -54,13 +61,14 @@ public void doPost(HttpServletRequest req, HttpServletResponse res) throws Servl
 		String languages;
 		int number;
 		String corpora;
+		List<Sentence> sentences; 
 
 		// model
 		
 		Message m = null;
 
-	//	try
-	//	{
+		try
+		{
 
 				translator = req.getParameter("translator");
 				languages = req.getParameter("languages");
@@ -68,6 +76,24 @@ public void doPost(HttpServletRequest req, HttpServletResponse res) throws Servl
 				corpora = req.getParameter("corpora");
 
 				System.out.println("Parameters retrieved: " + translator + languages + number + corpora);
+
+				switch (corpora)
+				{
+					case "VUA":
+						sentences = new SearchRandomSentenceDatabase(getConnection(), "VUA%", number).searchRandomSentence();
+						break;
+					case "MOH":
+						sentences = new SearchRandomSentenceDatabase(getConnection(), "VUA%", number).searchRandomSentence();
+						break;
+					case "FLA":
+						sentences = new SearchRandomSentenceDatabase(getConnection(), "VUA%", number).searchRandomSentence();
+						break;
+					default: 
+						System.err.println("No value received for the corpora, terminating");
+						return;
+
+				}
+
 
 				// c = new ReadCompanyDatabase(getDataSource().getConnection(), translator).readCompany();
 				
@@ -77,15 +103,20 @@ public void doPost(HttpServletRequest req, HttpServletResponse res) throws Servl
 				// else
 				// 	m = new Message("Company doesn't find.");
 
-	//	}/* catch (NumberFormatException ex)
-	//	          {
-	//	          m = new Message("Cannot read the company. Invalid input parameters: translator must be a string.",
-	//	          "E100", ex.getMessage());
-	//	          }*/catch (SQLException ex)
-	//	{
-	//			m = new Message("Cannot find the company: unexpected error while accessing the database.",
-	//			                "E200", ex.getMessage());
-	//	}
+		}/* catch (NumberFormatException ex)
+		          {
+		          m = new Message("Cannot read the company. Invalid input parameters: translator must be a string.",
+		          "E100", ex.getMessage());
+		          }*/
+		catch (SQLException ex)
+		{
+				m = new Message("Cannot find the company: unexpected error while accessing the database.",
+				                "E200", ex.getMessage());
+		}
+		catch (URISyntaxException ex)
+		{
+			m = new Message("There is a problem with the URI during the database connection phase.", "DB100", ex.getMessage());
+		}
 
 		// stores the deleted company and the message as a request attribute
 		// req.setAttribute("company", c);

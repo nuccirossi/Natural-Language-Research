@@ -29,7 +29,7 @@ public SearchRandomSentenceDatabase(final Connection con, String internal_id, in
  * @throws SQLException
  *             if any error occurs while storing the Category.
  */
-public List<Sentence> searchRandomSentece() throws SQLException
+public List<Sentence> searchRandomSentence() throws SQLException
 {
 		PreparedStatement pstmt = null;
 
