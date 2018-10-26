@@ -39,7 +39,7 @@ public int createSurvey() throws SQLException
 		int result = -1;
 
 
-		try
+		try 
 		{
 				switch (surv.getSurveyNum())
 				{
